@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sloan.music.platform</groupId>
+    <artifactId>music-platform-spider</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <modules>
+        <module>music-platform-spider-api</module>
+        <module>music-platform-spider-service</module>
+        <module>music-platform-spider-web</module>
+        <module>music-platform-spider-dao</module>
+    </modules>
+
+    <properties>
+        <music.platform.spider.version>1.0-SNAPSHOT</music.platform.spider.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <!--- inner start-->
+        <dependencies>
+            <dependency>
+                <groupId>com.sloan.music.platform</groupId>
+                <artifactId>music-platform-spider-api</artifactId>
+                <version>${music.platform.spider.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform</groupId>
+                <artifactId>music-platform-spider-dao</artifactId>
+                <version>${music.platform.spider.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform</groupId>
+                <artifactId>music-platform-spider-service</artifactId>
+                <version>${music.platform.spider.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform</groupId>
+                <artifactId>music-platform-spider-web</artifactId>
+                <version>${music.platform.spider.version}</version>
+            </dependency>
+            <!--- inner end-->
+
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>
