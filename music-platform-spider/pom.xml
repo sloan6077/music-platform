@@ -28,6 +28,7 @@
 
         <asynchttpclient.version>2.9.0</asynchttpclient.version>
         <guava.version>19.0</guava.version>
+        <jsoup.version>1.8.3</jsoup.version>
     </properties>
 
     <dependencyManagement>
@@ -69,6 +70,12 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
 
         </dependencies>

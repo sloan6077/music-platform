@@ -8,8 +8,15 @@ import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.AsyncHttpClientConfig;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClientConfig;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.ManagedBean;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author kakaluote zhaozhong@youzan.com
@@ -50,5 +57,13 @@ public class HttpClientConfig {
     public AsyncHttpClient asyncHttpClient(AsyncHttpClientConfig asyncHttpClientConfig) {
 
         return new DefaultAsyncHttpClient(asyncHttpClientConfig);
+    }
+
+    @Bean
+    @Qualifier("httpResultHandlerExecutor")
+    public ExecutorService executorService() {
+
+        return new ThreadPoolExecutor(0, 64,
+                60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), r -> new Thread(r,"http-client"));
     }
 }

@@ -3,6 +3,7 @@ package com.sloan.music.platform.spider.service.http;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.asynchttpclient.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -23,8 +24,9 @@ public class HttpClient {
     private AsyncHttpClient asyncHttpClient;
 
 
-    private static final ExecutorService RESULT_HANDLER_EXECUTOR = new ThreadPoolExecutor(0, 64,
-            60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), r -> new Thread(r,"http-client"));
+    @Resource
+    @Qualifier("httpResultHandlerExecutor")
+    private ExecutorService executorService;
 
 
     public Pair<Request, Response> doGet(String url) {
@@ -153,6 +155,6 @@ public class HttpClient {
                 resultHandler.accept(preRequest, null);
                 log.error("", e);
             }
-        }, RESULT_HANDLER_EXECUTOR);
+        }, executorService);
     }
 }
