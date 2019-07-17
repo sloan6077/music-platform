@@ -68,7 +68,6 @@ public class HomePageSpiderEngine {
 
             Document document = spiderContext.getDocument();
             Elements elements = document.getElementsByClass("msk");
-            //elements.forEach(w -> spiderPlayList.spider(w.absUrl("href"),w.attr("title")));
             elements.forEach(w -> {
                 log.info("href:{}",w.attr("href"));
                 log.info("title:{}",w.attr("title"));
