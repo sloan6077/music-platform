@@ -23,7 +23,7 @@ public class HomePageSpiderEngine {
 
 
     //order=hot&cat=%E5%85%A8%E9%83%A8
-    private static final String PRE_URL = "https://music.163.com/discover/playlist/?";
+    private static final String PRE_URL = "https://music.163.com/discover/playlist/";
 
 
     private static final int PLAY_LIST_SIZE = 38;
@@ -34,7 +34,7 @@ public class HomePageSpiderEngine {
 
             Map<String,String> param = new HashMap<>();
             param.put("order","hot");
-            param.put("cat","%E5%85%A8%E9%83%A8");
+            param.put("cat","全部");
             param.put("limit","35");
             if (i != 0) {
                 param.put("offset",String.valueOf(i*35));
@@ -70,7 +70,7 @@ public class HomePageSpiderEngine {
             Elements elements = document.getElementsByClass("msk");
             //elements.forEach(w -> spiderPlayList.spider(w.absUrl("href"),w.attr("title")));
             elements.forEach(w -> {
-                log.info("href:{}",w.absUrl("href"));
+                log.info("href:{}",w.attr("href"));
                 log.info("title:{}",w.attr("title"));
             });
         }

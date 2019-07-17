@@ -60,6 +60,8 @@ public abstract class AbstractSpider implements ISpider {
             }
         }, (req, res) -> {
 
+            log.info("req:{}",req);
+
             spiderContext.setRequest(req);
 
             if (200 == res.getStatusCode()) {

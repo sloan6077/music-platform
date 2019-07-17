@@ -37,6 +37,11 @@ public interface ISpider {
     default void parser() {}
 
     /**
+     * 业务处理
+     */
+    default void business() {}
+
+    /**
      * 发送爬虫后消息
      */
     default void send() {}

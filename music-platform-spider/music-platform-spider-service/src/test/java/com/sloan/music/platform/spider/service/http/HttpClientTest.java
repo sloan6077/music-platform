@@ -33,9 +33,14 @@ public class HttpClientTest extends BaseTest {
 //        });
 //        System.out.println("响应数据：" + res2.getValue());
         /* 异步回调处理 */
-        httpClient.doGetWithResultHandler("http://localhost:8080/test/get", builder -> {
-            //builder.setHeader("headInfo", "val");
-            builder.addQueryParam("param", "paramVal");
+        httpClient.doGetWithResultHandler("https://music.163.com/discover/playlist/", builder -> {
+            builder.setHeader("Referer", "http://music.163.com/");
+            builder.setHeader("Host", "music.163.com");
+            builder.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36");
+
+            builder.addQueryParam("order", "hot");
+            builder.addQueryParam("cat", "全部");
+            builder.addQueryParam("limit", "35");
         }, (req, res) -> {
             System.out.println("请求数据：" + req);
             System.out.println("响应数据：" + res);
