@@ -12,4 +12,10 @@
     <artifactId>music-platform-task-web</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.sloan.music.platform.task</groupId>
+            <artifactId>music-platform-task-service</artifactId>
+        </dependency>
+    </dependencies>
 </project>

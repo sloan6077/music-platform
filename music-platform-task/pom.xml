@@ -24,14 +24,48 @@
 
     <properties>
         <guava.version>19.0</guava.version>
+        <mybatis.starter.version>1.3.2</mybatis.starter.version>
+        <music.platform.task.version>1.0-SNAPSHOT</music.platform.task.version>
     </properties>
 
     <dependencyManagement>
+
         <dependencies>
+
+
+            <dependency>
+                <groupId>com.sloan.music.platform.task</groupId>
+                <artifactId>music-platform-task-api</artifactId>
+                <version>${music.platform.task.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform.task</groupId>
+                <artifactId>music-platform-task-service</artifactId>
+                <version>${music.platform.task.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform.task</groupId>
+                <artifactId>music-platform-task-dao</artifactId>
+                <version>${music.platform.task.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sloan.music.platform.task</groupId>
+                <artifactId>music-platform-task-web</artifactId>
+                <version>${music.platform.task.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
