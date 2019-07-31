@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author kakaluote zhaozhong@youzan.com
@@ -29,9 +30,24 @@ public class TaskDO {
     private String taskDescription;
 
     /**
+     * 任务类型0:分片 1:定时
+     */
+    private Integer taskType;
+
+    /**
+     * ip列表
+     */
+    private List<String> ipList;
+
+    /**
      * 任务执行间隔
      */
     private Integer taskInterval;
+
+    /**
+     * cron表达式
+     */
+    private String cron;
 
     /**
      * 任务所在应用名称

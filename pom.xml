@@ -9,4 +9,9 @@
     <artifactId>platform</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>music-platform-spider</module>
+        <module>music-platform-task</module>
+    </modules>
+
 </project>

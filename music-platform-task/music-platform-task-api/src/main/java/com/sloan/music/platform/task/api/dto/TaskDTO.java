@@ -14,11 +14,6 @@ import java.io.Serializable;
 public class TaskDTO implements Serializable {
 
     /**
-     * 任务名称
-     */
-    private String taskName;
-
-    /**
      * 最小业务id
      */
     private Long minBizId;

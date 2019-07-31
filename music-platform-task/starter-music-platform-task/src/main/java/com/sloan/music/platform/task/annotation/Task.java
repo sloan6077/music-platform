@@ -6,6 +6,4 @@ package com.sloan.music.platform.task.annotation;
  **/
 public @interface Task {
 
-
-    String name();
 }

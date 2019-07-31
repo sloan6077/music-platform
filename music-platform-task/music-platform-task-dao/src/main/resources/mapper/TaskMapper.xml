@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sloan.music.platform.task.dao.mapper.TaskMapper">
+
+    <resultMap id="TaskMap" type="com.sloan.music.platform.task.dao.dataobject.TaskDO">
+        <result property="id" column="id" />
+        <result property="taskName" column="task_name"/>
+        <result property="taskDescription" column="task_description"/>
+        <result property="taskInterval" column="task_interval"/>
+        <result property="appName" column="app_name"/>
+        <result property="className" column="class_name"/>
+        <result property="deletedAt" column="deleted_at"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <insert id="insert">
+
+    </insert>
+</mapper>

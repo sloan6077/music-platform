@@ -34,7 +34,6 @@ public class TaskBeanCollectImpl implements TaskBeanCollect, InitializingBean {
                 TaskDTO taskDTO = new TaskDTO();
                 taskDTO.setAppName(appName);
                 taskDTO.setClassName(beanMap.get(key).getClass().getName());
-                taskDTO.setTaskName(key);
 
                 return taskDTO;
 
