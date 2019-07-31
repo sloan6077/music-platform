@@ -64,6 +64,7 @@ public class RegistryServerSync implements InitializingBean, DisposableBean, Not
      * registryCache
      */
     private final ConcurrentMap<String, ConcurrentMap<String, Map<String, URL>>> registryCache = new ConcurrentHashMap<>();
+
     @Autowired
     private Registry registry;
 
@@ -146,10 +147,10 @@ public class RegistryServerSync implements InitializingBean, DisposableBean, Not
             String category = categoryEntry.getKey();
             ConcurrentMap<String, Map<String, URL>> services = registryCache.get(category);
             if (services == null) {
-                services = new ConcurrentHashMap<String, Map<String, URL>>();
+                services = new ConcurrentHashMap<>();
                 registryCache.put(category, services);
             } else {// Fix map can not be cleared when service is unregistered: when a unique “group/service:version” service is unregistered, but we still have the same services with different version or group, so empty protocols can not be invoked.
-                Set<String> keys = new HashSet<String>(services.keySet());
+                Set<String> keys = new HashSet<>(services.keySet());
                 for (String key : keys) {
                     if (Tool.getInterface(key).equals(interfaceName) && !categoryEntry.getValue().entrySet().contains(key)) {
                         services.remove(key);
