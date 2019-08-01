@@ -83,7 +83,6 @@ public class RegistryServerSync implements InitializingBean, DisposableBean, Not
         registry.unsubscribe(SUBSCRIBE, this);
     }
 
-    // Notification of of any service with any type (override、subcribe、route、provider) is full.
     @Override
     public void notify(List<URL> urls) {
         if (urls == null || urls.isEmpty()) {

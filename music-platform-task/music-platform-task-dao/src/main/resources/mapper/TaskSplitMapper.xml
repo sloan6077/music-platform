@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sloan.music.platform.task.dao.mapper.TaskSplitMapper">
+
+    <resultMap id="TaskExecuteRecordMap" type="com.sloan.music.platform.task.dao.dataobject.TaskSplitDO">
+        <result property="id" column="id" />
+        <result property="taskId" column="task_id"/>
+        <result property="beginBizId" column="begin_biz_id"/>
+        <result property="endBizId" column="end_biz_id"/>
+        <result property="status" column="status"/>
+        <result property="recordId" column="record_id"/>
+    </resultMap>
+
+</mapper>

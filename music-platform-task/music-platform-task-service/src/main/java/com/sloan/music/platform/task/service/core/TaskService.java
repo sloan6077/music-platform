@@ -10,6 +10,11 @@ import java.util.List;
  **/
 public interface TaskService {
 
+    /**
+     * 执行任务
+     * @param id
+     */
+    void execute(Long id);
 
     /**
      * 新增任务

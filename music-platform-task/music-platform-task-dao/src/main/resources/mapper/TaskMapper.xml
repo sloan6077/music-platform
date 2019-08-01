@@ -19,4 +19,20 @@
     <insert id="insert">
 
     </insert>
+
+    <update id="update">
+
+    </update>
+
+    <delete id="delete">
+
+    </delete>
+
+    <select id="getTask" resultMap="TaskMap">
+
+    </select>
+
+    <select id="getTaskList" resultMap="TaskMap">
+
+    </select>
 </mapper>
