@@ -13,4 +13,8 @@
         <result property="recordId" column="record_id"/>
     </resultMap>
 
+    <insert id="insert">
+
+    </insert>
+
 </mapper>

@@ -14,4 +14,8 @@
         <result property="status" column="status"/>
     </resultMap>
 
+    <insert id="insert">
+
+    </insert>
+
 </mapper>

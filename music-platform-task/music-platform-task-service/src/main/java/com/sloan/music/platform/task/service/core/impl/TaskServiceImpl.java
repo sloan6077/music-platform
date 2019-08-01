@@ -6,12 +6,16 @@ import com.sloan.music.platform.task.api.service.TaskRemoteService;
 import com.sloan.music.platform.task.dao.dataobject.TaskDO;
 import com.sloan.music.platform.task.dao.mapper.TaskMapper;
 import com.sloan.music.platform.task.service.bo.TaskBO;
+import com.sloan.music.platform.task.service.bo.TaskExecuteRecordBO;
+import com.sloan.music.platform.task.service.core.TaskExecuteRecordService;
 import com.sloan.music.platform.task.service.core.TaskService;
+import com.sloan.music.platform.task.service.core.TaskSplitService;
 import com.sloan.music.platform.task.service.registry.ServiceFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +29,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Resource
     private ServiceFilter serviceFilter;
+
+    @Resource
+    private TaskSplitService taskSplitService;
+
+    @Resource
+    private TaskExecuteRecordService taskExecuteRecordService;
 
     @Resource
     private TaskMapper taskMapper;
@@ -44,7 +54,16 @@ public class TaskServiceImpl implements TaskService {
         Long minBizId = taskDTO.getMinBizId();
         Long maxBizId = taskDTO.getMaxBizId();
 
+        TaskExecuteRecordBO recordBO
+                = new TaskExecuteRecordBO()
+                .setTaskId(taskDO.getId())
+                .setMinBizId(minBizId)
+                .setMaxBizId(maxBizId)
+                .setBeginTime(new Date())
+                .setStatus("executing");
 
+        taskExecuteRecordService.addTaskExecuteRecord(recordBO);
+        taskSplitService.splitTask(taskDO.getId(),minBizId,maxBizId,taskInterval,recordBO.getId());
 
     }
 
