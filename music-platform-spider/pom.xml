@@ -29,6 +29,7 @@
         <asynchttpclient.version>2.9.0</asynchttpclient.version>
         <guava.version>19.0</guava.version>
         <jsoup.version>1.8.3</jsoup.version>
+        <fastjson.version>1.2.58</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -78,6 +79,12 @@
                 <version>${jsoup.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>
@@ -90,6 +97,10 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
     </dependencies>
 
