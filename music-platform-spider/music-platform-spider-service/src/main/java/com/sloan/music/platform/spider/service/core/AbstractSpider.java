@@ -17,6 +17,9 @@ import java.util.Map;
 @Slf4j
 public abstract class AbstractSpider implements ISpider {
 
+    private static final String CONTENT_TYPE = "content-type";
+
+    private static final String FORM_DATA = "application/x-www-form-urlencoded";
 
     protected SpiderContext spiderContext;
 
@@ -43,6 +46,12 @@ public abstract class AbstractSpider implements ISpider {
         this.spiderContext.setParam(param);
     }
 
+    @Override
+    public void formBody(Map<String,String> formBody) {
+
+        this.spiderContext.setFormBody(formBody);
+    }
+
     public void spider() {
 
 
@@ -58,6 +67,12 @@ public abstract class AbstractSpider implements ISpider {
             if (!CollectionUtils.isEmpty(param)) {
                 param.forEach(builder::addQueryParam);
             }
+            Map<String,String> formBody = spiderContext.getFormBody();
+            if (!CollectionUtils.isEmpty(formBody)) {
+                builder.setHeader(CONTENT_TYPE,FORM_DATA);
+
+            }
+
         }, (req, res) -> {
 
             log.info("req:{}",req);

@@ -27,6 +27,12 @@ public interface ISpider {
     void header(Map<String,String> header);
 
     /**
+     * 设置表单数据
+     * @param formBody
+     */
+    default void formBody(Map<String,String> formBody) {}
+
+    /**
      * 设置代理
      */
     default void proxy() {}

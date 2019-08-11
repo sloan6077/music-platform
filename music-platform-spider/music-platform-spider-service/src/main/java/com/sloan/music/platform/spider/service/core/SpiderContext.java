@@ -25,6 +25,8 @@ public class SpiderContext {
 
     private Map<String,String> param;
 
+    private Map<String,String> formBody;
+
     private Request request;
 
     private Response response;
