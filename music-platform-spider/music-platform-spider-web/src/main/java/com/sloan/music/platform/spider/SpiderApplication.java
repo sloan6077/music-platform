@@ -1,5 +1,6 @@
 package com.sloan.music.platform.spider;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/7/15
  **/
 @SpringBootApplication(scanBasePackages = "com.sloan.music.platform.spider")
+@MapperScan("com.sloan.music.platform.spider.dao")
 public class SpiderApplication {
 
 

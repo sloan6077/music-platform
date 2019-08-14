@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sloan.music.platform.spider.dao.Music163PlayListMapper">
+
+    <resultMap id="Music163PlayListMap" type="com.sloan.music.platform.spider.service.entity.music163.entity.Music163PlayListEntity">
+        <result property="id" column="id" />
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="pubDate" column="pub_date"/>
+        <result property="tag" column="tag"/>
+        <result property="introduction" column="introduction"/>
+        <result property="collectAmount" column="collect_amount"/>
+        <result property="transmitAmount" column="transmit_amount"/>
+        <result property="commentAmount" column="comment_amount"/>
+        <result property="playAmount" column="play_amount"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into `music163_play_list`(`id`,`title`,`url`,`image_url`,`tag`,`pub_date`,
+        `introduction`,`collect_amount`,`transmit_amount`,`comment_amount`,`play_amount`)
+        values (#{id},#{title},#{url},#{imageUrl},#{tag},#{pubDate},#{introduction},#{collectAmount},#{transmitAmount},#{commentAmount},#{playAmount});
+    </insert>
+
+
+    <select id="getById" resultMap="Music163PlayListMap">
+        select * from
+    </select>
+</mapper>

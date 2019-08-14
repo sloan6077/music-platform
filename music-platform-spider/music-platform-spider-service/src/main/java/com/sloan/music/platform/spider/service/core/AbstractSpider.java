@@ -81,7 +81,7 @@ public abstract class AbstractSpider<C,B> implements ISpider {
             spiderContext.setResponse(res);
 
             parser();
-
+            business();
             send();
         });
     }

@@ -152,7 +152,6 @@ public class HttpClient {
             try {
                 resultHandler.accept(preRequest, future.get());
             } catch (Exception e) {
-                resultHandler.accept(preRequest, null);
                 log.error("", e);
             }
         }, executorService);

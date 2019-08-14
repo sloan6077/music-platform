@@ -1,7 +1,7 @@
 package com.sloan.music.platform.spider.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sloan.music.platform.spider.service.entity.music163.bo.Music163SongBO;
+import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongBO;
 import com.sloan.music.platform.spider.service.kafka.KafkaService;
 import com.sloan.music.platform.spider.service.kafka.TopicConstants;
 import lombok.extern.slf4j.Slf4j;
