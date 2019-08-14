@@ -2,15 +2,20 @@ package com.sloan.music.platform.spider.service.music163;
 
 import com.sloan.music.platform.spider.service.core.AbstractSpider;
 import com.sloan.music.platform.spider.service.core.SpiderContext;
+import com.sloan.music.platform.spider.service.kafka.KafkaService;
+import com.sloan.music.platform.spider.service.kafka.TopicConstants;
 import com.sloan.music.platform.spider.service.util.HeaderKeyConstants;
 import com.sloan.music.platform.spider.service.util.UserAgentConstants;
 import lombok.extern.slf4j.Slf4j;
-import org.asynchttpclient.Response;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +26,8 @@ import java.util.Map;
 @Slf4j
 public class HomePageSpiderEngine {
 
+    @Resource
+    private KafkaService kafkaService;
 
     //order=hot&cat=%E5%85%A8%E9%83%A8
     private static final String PRE_URL = "https://music.163.com/discover/playlist/";
@@ -30,7 +37,7 @@ public class HomePageSpiderEngine {
 
     public void start() {
 
-        for (int i=37;i<PLAY_LIST_SIZE;i++) {
+        for (int i=1;i<PLAY_LIST_SIZE;i++) {
 
             Map<String,String> param = new HashMap<>();
             param.put("order","hot");
@@ -40,15 +47,16 @@ public class HomePageSpiderEngine {
                 param.put("offset",String.valueOf(i*35));
             }
 
-            HomePageSpider homePageSpider = new HomePageSpider(new SpiderContext(),param);
-            homePageSpider.spider();
+            HomePagePlayListSpider homePagePlayListSpider = new HomePagePlayListSpider(new SpiderContext<>(),param);
+            homePagePlayListSpider.spider();
         }
     }
 
-    private class HomePageSpider extends AbstractSpider {
+    private class HomePagePlayListSpider extends AbstractSpider<String,Void> {
 
+        private static final String PLAY_LIST_PRE_URL = "https://music.163.com/#";
 
-        public HomePageSpider(SpiderContext spiderContext,Map<String,String> param) {
+        HomePagePlayListSpider(SpiderContext<String,Void> spiderContext, Map<String, String> param) {
 
             super(spiderContext);
 
@@ -64,20 +72,22 @@ public class HomePageSpiderEngine {
         @Override
         public void parser() {
 
-            log.info("parser:{}","123");
-
             Document document = spiderContext.getDocument();
             Elements elements = document.getElementsByClass("msk");
-            elements.forEach(w -> {
-                log.info("href:{}",w.attr("href"));
-                log.info("title:{}",w.attr("title"));
-            });
+
+            List<String> messages = new ArrayList<>();
+            elements.forEach(w -> messages.add(PLAY_LIST_PRE_URL + w.attr("href")));
+
+            spiderContext.setMessages(messages);
         }
 
         @Override
         public void send() {
 
-
+            List<String> messages = spiderContext.getMessages();
+            if (!CollectionUtils.isEmpty(messages)) {
+                messages.forEach(message -> kafkaService.sendMessage(TopicConstants.MUSIC163_PLAYLIST, message));
+            }
         }
     }
 }

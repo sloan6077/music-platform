@@ -6,6 +6,7 @@ import org.asynchttpclient.Request;
 import org.asynchttpclient.Response;
 import org.jsoup.nodes.Document;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Map;
  **/
 @Data
 @Accessors(chain = true)
-public class SpiderContext {
+public class SpiderContext<C,B> {
 
 
     private Document document;
@@ -30,4 +31,8 @@ public class SpiderContext {
     private Request request;
 
     private Response response;
+
+    private List<C> messages;
+
+    private B businessData;
 }

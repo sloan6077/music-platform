@@ -10,7 +10,7 @@ import javax.annotation.Resource;
  * @author kakaluote zhaozhong@youzan.com
  * @date 2019/7/17
  **/
-public class HomePageSpiderEngineTest extends BaseTest {
+public class HomePagePlayListSpiderEngineEngineTest extends BaseTest {
 
     @Resource
     private HomePageSpiderEngine homePageSpiderEngine;

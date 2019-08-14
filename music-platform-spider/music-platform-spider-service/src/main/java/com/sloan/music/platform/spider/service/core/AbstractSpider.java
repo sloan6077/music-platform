@@ -15,15 +15,15 @@ import java.util.Map;
  * @date 2019/7/16
  **/
 @Slf4j
-public abstract class AbstractSpider implements ISpider {
+public abstract class AbstractSpider<C,B> implements ISpider {
 
     private static final String CONTENT_TYPE = "content-type";
 
     private static final String FORM_DATA = "application/x-www-form-urlencoded";
 
-    protected SpiderContext spiderContext;
+    protected SpiderContext<C,B> spiderContext;
 
-    public AbstractSpider(SpiderContext spiderContext) {
+    public AbstractSpider(SpiderContext<C,B> spiderContext) {
 
         this.spiderContext = spiderContext;
     }
@@ -53,10 +53,6 @@ public abstract class AbstractSpider implements ISpider {
     }
 
     public void spider() {
-
-
-        log.info("url:{}",spiderContext.getUrl());
-        log.info("param:{}",spiderContext.getParam());
 
         httpClient().doGetWithResultHandler(spiderContext.getUrl(), builder -> {
             Map<String,String> header = spiderContext.getHeader();

@@ -1,7 +1,7 @@
 package com.sloan.music.platform.spider.service.kafka;
 
 import com.alibaba.fastjson.JSON;
-import com.sloan.music.platform.spider.service.bo.music163.Music163SongBO;
+import com.sloan.music.platform.spider.service.entity.music163.bo.Music163SongBO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +38,11 @@ public class KafkaService {
         }
     }
 
-    @KafkaListener(topics = {TopicConstants.MUSIC163_SONG})
+    @KafkaListener(topics = {TopicConstants.MUSIC163_PLAYLIST},groupId = "test001")
     public void processMessage(ConsumerRecord<String, String> record) {
 
         log.info("processMessage, topic = {}, msg = {}", record.topic(), record.value());
 
-        Music163SongBO songBO = JSON.parseObject(record.value(), Music163SongBO.class);
-
-        log.info("song:{}",songBO);
+        //log.info("song:{}",songBO);
     }
 }
