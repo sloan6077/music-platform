@@ -2,6 +2,7 @@ package com.sloan.music.platform.spider.controller;
 
 import com.sloan.music.platform.spider.service.music163.HomePageSpiderEngine;
 import com.sloan.music.platform.spider.service.music163.PlayListSpiderEngine;
+import com.sloan.music.platform.spider.service.music163.SongSpiderEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,9 @@ public class SpiderController {
     @Resource
     private PlayListSpiderEngine playListSpiderEngine;
 
+    @Resource
+    private SongSpiderEngine songSpiderEngine;
+
     @RequestMapping(value = "/homepage/playlist", method = RequestMethod.GET)
     public void spiderHomePagePlayList() {
 
@@ -36,6 +40,12 @@ public class SpiderController {
     public void spiderPlayList(@RequestParam String id) {
 
         playListSpiderEngine.test(id);
+    }
+
+    @RequestMapping(value = "/song", method = RequestMethod.GET)
+    public void spiderSong(@RequestParam String id) {
+
+        songSpiderEngine.test(id);
     }
 
 }

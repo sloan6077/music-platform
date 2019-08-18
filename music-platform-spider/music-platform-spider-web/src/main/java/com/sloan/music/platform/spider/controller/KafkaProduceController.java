@@ -1,7 +1,7 @@
 package com.sloan.music.platform.spider.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongBO;
+import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongEntity;
 import com.sloan.music.platform.spider.service.kafka.KafkaService;
 import com.sloan.music.platform.spider.service.kafka.TopicConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +26,9 @@ public class KafkaProduceController {
     private KafkaService kafkaService;
 
     @RequestMapping(value = "/produce", method = RequestMethod.POST)
-    public void produce(@RequestBody Music163SongBO music163SongBO) {
+    public void produce(@RequestBody Music163SongEntity music163SongEntity) {
 
 
-        kafkaService.sendMessage(TopicConstants.MUSIC163_SONG, JSON.toJSONString(music163SongBO));
+        kafkaService.sendMessage(TopicConstants.MUSIC163_SONG, JSON.toJSONString(music163SongEntity));
     }
 }

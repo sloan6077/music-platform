@@ -154,20 +154,6 @@ public class PlayListSpiderEngine {
             playListEntity.setPlayAmount(playAmount);
         }
 
-        private Date getPubDate(Document document) {
-
-            Elements elements = document.getElementsByTag("script");
-            for (Element element : elements) {
-                String scriptType = element.attr("type");
-                if (scriptType.equals(SCRIPT_TYPE)) {
-                    String dateStr  =JSON.parseObject(element.childNode(0).outerHtml()).getString("pubDate");
-                    return DateUtil.parse(dateStr);
-                }
-            }
-
-            return new Date();
-        }
-
         private String getTag(Document document) {
 
             Elements elements = document.getElementsByClass("u-tag");

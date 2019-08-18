@@ -1,13 +1,19 @@
 package com.sloan.music.platform.spider.service.core;
 
+import com.alibaba.fastjson.JSON;
 import com.sloan.music.platform.spider.service.http.HttpClient;
 import com.sloan.music.platform.spider.service.util.ApplicationContextUtil;
+import com.sloan.music.platform.spider.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.asynchttpclient.Response;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -84,6 +90,22 @@ public abstract class AbstractSpider<C,B> implements ISpider {
             business();
             send();
         });
+    }
+
+    private static final String SCRIPT_TYPE = "application/ld+json";
+
+    protected Date getPubDate(Document document) {
+
+        Elements elements = document.getElementsByTag("script");
+        for (Element element : elements) {
+            String scriptType = element.attr("type");
+            if (scriptType.equals(SCRIPT_TYPE)) {
+                String dateStr  = JSON.parseObject(element.childNode(0).outerHtml()).getString("pubDate");
+                return DateUtil.parse(dateStr);
+            }
+        }
+
+        return new Date();
     }
 
     private HttpClient httpClient() {
