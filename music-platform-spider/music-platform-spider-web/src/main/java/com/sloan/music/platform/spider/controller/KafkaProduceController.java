@@ -29,6 +29,6 @@ public class KafkaProduceController {
     public void produce(@RequestBody Music163SongEntity music163SongEntity) {
 
 
-        kafkaService.sendMessage(TopicConstants.MUSIC163_SONG, JSON.toJSONString(music163SongEntity));
+        kafkaService.sendMessage(TopicConstants.Music163Song.TOPIC_SONG, JSON.toJSONString(music163SongEntity));
     }
 }

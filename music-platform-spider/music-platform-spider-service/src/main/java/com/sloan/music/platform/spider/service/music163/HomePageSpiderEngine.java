@@ -86,7 +86,7 @@ public class HomePageSpiderEngine {
 
             List<String> messages = spiderContext.getMessages();
             if (!CollectionUtils.isEmpty(messages)) {
-                messages.forEach(message -> kafkaService.sendMessage(TopicConstants.MUSIC163_PLAYLIST, message));
+                messages.forEach(message -> kafkaService.sendMessage(TopicConstants.Music163PlayList.TOPIC_PLAYLIST, message));
             }
         }
     }

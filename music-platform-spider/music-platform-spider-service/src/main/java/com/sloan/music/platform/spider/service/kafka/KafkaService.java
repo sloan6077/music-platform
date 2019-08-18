@@ -35,12 +35,4 @@ public class KafkaService {
             log.error("produce error!",e);
         }
     }
-
-    @KafkaListener(topics = {TopicConstants.MUSIC163_PLAYLIST},groupId = "test001")
-    public void processMessage(ConsumerRecord<String, String> record) {
-
-        log.info("processMessage, topic = {}, msg = {}", record.topic(), record.value());
-
-        //log.info("song:{}",songBO);
-    }
 }

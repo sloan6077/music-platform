@@ -1,6 +1,5 @@
 package com.sloan.music.platform.spider.service.music163;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.base.Joiner;
 import com.sloan.music.platform.spider.dao.Music163PlayListMapper;
 import com.sloan.music.platform.spider.service.core.AbstractSpider;
@@ -8,7 +7,6 @@ import com.sloan.music.platform.spider.service.core.SpiderContext;
 import com.sloan.music.platform.spider.service.entity.music163.entity.Music163PlayListEntity;
 import com.sloan.music.platform.spider.service.kafka.KafkaService;
 import com.sloan.music.platform.spider.service.kafka.TopicConstants;
-import com.sloan.music.platform.spider.service.util.DateUtil;
 import com.sloan.music.platform.spider.service.util.HeaderKeyConstants;
 import com.sloan.music.platform.spider.service.util.UserAgentConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +39,7 @@ public class PlayListSpiderEngine {
     @Resource
     private Music163PlayListMapper music163PlayListMapper;
 
-    @KafkaListener(topics = {TopicConstants.MUSIC163_PLAYLIST},groupId = "play_list_spider_engine")
+    @KafkaListener(topics = {TopicConstants.Music163PlayList.TOPIC_PLAYLIST},groupId = TopicConstants.Music163PlayList.GROUP_PLAYLIST_SPIDER)
     public void processMessage(ConsumerRecord<String, String> record) {
 
         String playListId = record.value();
@@ -175,7 +172,7 @@ public class PlayListSpiderEngine {
             Document document = spiderContext.getDocument();
             document.select("ul[class=f-hide] a").forEach(element -> {
                 String songId = element.attr("href").split("id=")[1];
-                kafkaService.sendMessage(TopicConstants.MUSIC163_SONG,songId);
+                kafkaService.sendMessage(TopicConstants.Music163Song.TOPIC_SONG,songId);
             });
         }
     }

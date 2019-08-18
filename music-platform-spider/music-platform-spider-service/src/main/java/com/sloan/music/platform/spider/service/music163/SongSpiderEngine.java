@@ -1,5 +1,6 @@
 package com.sloan.music.platform.spider.service.music163;
 
+import com.sloan.music.platform.spider.dao.Music163SongMapper;
 import com.sloan.music.platform.spider.service.core.AbstractSpider;
 import com.sloan.music.platform.spider.service.core.SpiderContext;
 import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongEntity;
@@ -32,10 +33,15 @@ public class SongSpiderEngine {
     @Resource
     private KafkaService kafkaService;
 
-    @KafkaListener(topics = {TopicConstants.MUSIC163_SONG},groupId = "song_spider_engine")
+    @Resource
+    private Music163SongMapper music163SongMapper;
+
+    @KafkaListener(topics = {TopicConstants.Music163Song.TOPIC_SONG},groupId = TopicConstants.Music163Song.GROUP_SONG_SPIDER)
     public void processMessage(ConsumerRecord<String, String> record) {
 
         String songId = record.value();
+        SongSpider songSpider = new SongSpider(new SpiderContext<>(),songId);
+        songSpider.spider();
     }
 
     public void test(String songId) {
@@ -119,7 +125,7 @@ public class SongSpiderEngine {
         public void business() {
 
             Music163SongEntity music163SongEntity = spiderContext.getBusinessData();
-
+            music163SongMapper.insert(music163SongEntity);
         }
 
         @Override
@@ -130,7 +136,7 @@ public class SongSpiderEngine {
             for (Element aElement : aTags) {
                 String href = aElement.attr("href");
                 if (href.contains("playlist")) {
-                    kafkaService.sendMessage(TopicConstants.MUSIC163_PLAYLIST,href.split("id=")[1]);
+                    kafkaService.sendMessage(TopicConstants.Music163PlayList.TOPIC_PLAYLIST,href.split("id=")[1]);
                 }
             }
         }
