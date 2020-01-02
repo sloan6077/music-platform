@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @author kakaluote zhaozhong@youzan.com
  * @date 2019/7/16
  **/
-public class HttpClientTest extends BaseTest {
+public class HttpClientTest extends BwaseTest {
 
     @Resource
     private HttpClient httpClient;

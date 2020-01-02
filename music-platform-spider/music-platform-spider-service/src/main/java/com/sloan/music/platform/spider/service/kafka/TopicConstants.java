@@ -12,6 +12,8 @@ public final class TopicConstants {
         public static final String TOPIC_SONG = "music163_song";
 
         public static final String GROUP_SONG_SPIDER = "song_spider_engine";
+
+        public static final String GROUP_SONG_LYRIC_SPIDER = "song_lyric_spider_engine";
     }
 
     public static final class Music163PlayList {
