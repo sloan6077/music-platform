@@ -136,7 +136,7 @@ public class SongSpiderEngine {
             for (Element aElement : aTags) {
                 String href = aElement.attr("href");
                 if (href.contains("playlist")) {
-                    kafkaService.sendMessage(TopicConstants.Music163PlayList.TOPIC_PLAYLIST,href.split("id=")[1]);
+                    kafkaService.sendMessage(TopicConstants.Music163PlayList.TOPIC_PLAYLIST,href);
                 }
             }
         }

@@ -49,28 +49,27 @@ public class PlayListSpiderEngine {
 
     public void test(String playListId) {
 
-        PlayListSpider playListSpider = new PlayListSpider(new SpiderContext<>(),playListId);
+        String PLAY_LIST_PRE_URL = "https://music.163.com/playlist?id=";
+        PlayListSpider playListSpider = new PlayListSpider(new SpiderContext<>(),PLAY_LIST_PRE_URL + playListId);
         playListSpider.spider();
     }
 
     private class PlayListSpider extends AbstractSpider<String, Music163PlayListEntity> {
 
-        private static final String PLAY_LIST_PRE_URL = "https://music.163.com/playlist?id=";
+        //private static final String PLAY_LIST_PRE_URL = "https://music.163.com/playlist?id=";
 
-        private Long id;
-
-        PlayListSpider(SpiderContext<String, Music163PlayListEntity> spiderContext, String playListId) {
+        PlayListSpider(SpiderContext<String, Music163PlayListEntity> spiderContext, String playListUrl) {
 
             super(spiderContext);
 
-            this.id = Long.valueOf(playListId);
+
 
             Map<String,String> header = new HashMap<>();
             header.put(HeaderKeyConstants.REFERER,"http://music.163.com/");
             header.put(HeaderKeyConstants.HOST,"music.163.com");
             header.put(HeaderKeyConstants.USER_AGENT, UserAgentConstants.CHROME_AGENT);
             header(header);
-            url(PLAY_LIST_PRE_URL + playListId);
+            url(playListUrl);
         }
 
         private static final String TITLE_KEY = "og:title";
@@ -88,7 +87,7 @@ public class PlayListSpiderEngine {
             Elements elements = document.getElementsByTag("meta");
 
             Music163PlayListEntity playListEntity = new Music163PlayListEntity();
-            playListEntity.setId(this.id);
+            playListEntity.setId(Long.valueOf(spiderContext.getUrl().split("id=")[1]));
             playListEntity.setUrl(spiderContext.getUrl());
             elements.forEach(element -> {
 
