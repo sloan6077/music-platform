@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/7/15
  **/
 @SpringBootApplication(scanBasePackages = "com.sloan.music.platform.spider")
-@MapperScan("com.sloan.music.platform.spider.dao")
+@MapperScan("com.sloan.music.platform.spider.dao.db")
 public class SpiderApplication {
 
 
