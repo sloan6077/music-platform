@@ -1,4 +1,4 @@
-package com.sloan.music.platform.spider.service.entity.music163.entity;
+package com.sloan.music.platform.spider.model.entity.music163;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

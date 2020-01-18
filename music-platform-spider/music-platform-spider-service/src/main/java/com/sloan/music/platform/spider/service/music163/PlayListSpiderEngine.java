@@ -1,10 +1,10 @@
 package com.sloan.music.platform.spider.service.music163;
 
 import com.google.common.base.Joiner;
-import com.sloan.music.platform.spider.dao.Music163PlayListMapper;
+import com.sloan.music.platform.spider.dao.db.Music163PlayListMapper;
+import com.sloan.music.platform.spider.model.entity.music163.Music163PlayListEntity;
 import com.sloan.music.platform.spider.service.core.AbstractSpider;
 import com.sloan.music.platform.spider.service.core.SpiderContext;
-import com.sloan.music.platform.spider.service.entity.music163.entity.Music163PlayListEntity;
 import com.sloan.music.platform.spider.service.kafka.KafkaService;
 import com.sloan.music.platform.spider.service.kafka.TopicConstants;
 import com.sloan.music.platform.spider.service.util.HeaderKeyConstants;

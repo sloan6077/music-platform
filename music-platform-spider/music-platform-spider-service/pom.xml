@@ -30,6 +30,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sloan.music.platform.spider</groupId>
+            <artifactId>music-platform-spider-dao</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.asynchttpclient</groupId>
             <artifactId>async-http-client</artifactId>
         </dependency>

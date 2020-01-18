@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sloan.music.platform.spider.dao.Music163SongMapper">
 
-    <resultMap id="Music163PlayListMap" type="com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongEntity">
+    <resultMap id="Music163PlayListMap" type="com.sloan.music.platform.spider.model.entity.music163.Music163SongEntity">
         <result property="id" column="id" />
         <result property="title" column="title"/>
         <result property="url" column="url"/>

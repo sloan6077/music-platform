@@ -1,9 +1,9 @@
 package com.sloan.music.platform.spider.service.music163;
 
-import com.sloan.music.platform.spider.dao.Music163SongMapper;
+import com.sloan.music.platform.spider.dao.db.Music163SongMapper;
+import com.sloan.music.platform.spider.model.entity.music163.Music163SongEntity;
 import com.sloan.music.platform.spider.service.core.AbstractSpider;
 import com.sloan.music.platform.spider.service.core.SpiderContext;
-import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongEntity;
 import com.sloan.music.platform.spider.service.kafka.KafkaService;
 import com.sloan.music.platform.spider.service.kafka.TopicConstants;
 import com.sloan.music.platform.spider.service.util.HeaderKeyConstants;
@@ -56,7 +56,7 @@ public class SongSpiderEngine {
 
         private Long id;
 
-        public SongSpider(SpiderContext<String, Music163SongEntity> spiderContext,String songId) {
+        public SongSpider(SpiderContext<String, Music163SongEntity> spiderContext, String songId) {
             super(spiderContext);
 
             this.id = Long.valueOf(songId);

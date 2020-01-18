@@ -1,4 +1,4 @@
-package com.sloan.music.platform.spider.service.entity.music163.entity;
+package com.sloan.music.platform.spider.model.entity.music163;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -6,10 +6,6 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author kakaluote zhaozhong@youzan.com
- * @date 2019/8/13
- **/
 @Data
 @Accessors(chain = true)
 public class Music163PlayListEntity implements Serializable {

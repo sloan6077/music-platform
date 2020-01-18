@@ -1,6 +1,7 @@
-package com.sloan.music.platform.spider.dao;
+package com.sloan.music.platform.spider.dao.db;
 
-import com.sloan.music.platform.spider.service.entity.music163.entity.Music163SongEntity;
+
+import com.sloan.music.platform.spider.model.entity.music163.Music163SongEntity;
 
 /**
  * @author kakaluote zhaozhong@youzan.com
