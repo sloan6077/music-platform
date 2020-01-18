@@ -1,7 +1,7 @@
 package com.sloan.music.platform.spider.controller;
 
 import com.sloan.music.platform.spider.dao.es.MusicRepository;
-import com.sloan.music.platform.spider.model.es.Music;
+import com.sloan.music.platform.spider.model.es.MusicSongEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class ESController {
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public boolean save(@RequestBody Music music) {
+    public boolean save(@RequestBody MusicSongEntity music) {
 
         musicRepository.save(music);
 
