@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sloan.music.platform.spider.dao.Music163SongMapper">
+<mapper namespace="com.sloan.music.platform.spider.dao.db.Music163SongMapper">
 
     <resultMap id="Music163PlayListMap" type="com.sloan.music.platform.spider.model.entity.music163.Music163SongEntity">
         <result property="id" column="id" />
