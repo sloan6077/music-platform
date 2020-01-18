@@ -27,12 +27,4 @@ hs_err_pid*
 *.iws
 *.iml
 *.ipr
-/music-platform-spider/music-platform-spider-api/target/
-/music-platform-spider/music-platform-spider-dao/target/
-/music-platform-spider/music-platform-spider-service/target/
-/music-platform-spider/music-platform-spider-web/target/
-/music-platform-task/starter-music-platform-task/target/
-/music-platform-task/music-platform-task-web/target/
-/music-platform-task/music-platform-task-service/target/
-/music-platform-task/music-platform-task-dao/target/
-/music-platform-task/music-platform-task-api/target/
+target
