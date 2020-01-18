@@ -13,10 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.sloan.music.platform.spider</groupId>
             <artifactId>music-platform-spider-model</artifactId>
         </dependency>
